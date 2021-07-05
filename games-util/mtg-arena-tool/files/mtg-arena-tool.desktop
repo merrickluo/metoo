@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MTG Arena Tool
+Comment=MTG Arena Deck Tracker
+Exec=/usr/bin/mtg-arena-tool %U
+Icon=mtg-arena-tool
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Game;Utility
+StartupWMClass=mtg-arena-tool
