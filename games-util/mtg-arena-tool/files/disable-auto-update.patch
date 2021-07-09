@@ -1,0 +1,26 @@
+diff --git a/package.json b/package.json
+index 3c4a399b..4c0a53a5 100644
+--- a/package.json
++++ b/package.json
+@@ -75,7 +75,7 @@
+       }
+     },
+     "linux": {
+-      "target": "AppImage",
++      "target": "dir",
+       "category": "Utility;",
+       "icon": "src/assets/icons/icon-256.png",
+       "artifactName": "${productName}-${version}.${ext}"
+diff --git a/src/main/index.ts b/src/main/index.ts
+index be834a7f..bb48ca31 100644
+--- a/src/main/index.ts
++++ b/src/main/index.ts
+@@ -88,7 +88,7 @@ if (!singleLock) {
+ 
+ app.on("ready", () => {
+   if (app.isPackaged) {
+-    startUpdater();
++    startApp();
+   } else {
+     startApp();
+     installDevTools();

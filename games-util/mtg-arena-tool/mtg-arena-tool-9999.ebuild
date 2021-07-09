@@ -21,8 +21,9 @@ net-libs/nodejs
 BDEPEND="${DEPEND}"
 RDEPEND="${DEPEND}"
 
-APPIMAGE_VER=5.5.21
-APPIMAGE_NAME=MTG-Arena-Tool-${APPIMAGE_VER}.AppImage
+PATCHES=(
+	"${FILESDIR}/disable-auto-update.patch"
+)
 
 src_compile() {
 	npm install
@@ -34,7 +35,7 @@ src_install() {
 	domenu ${FILESDIR}/${PN}.desktop
 
 	insinto /opt/${PN}
-	newins dist/${APPIMAGE_NAME} ${PN}
+	doins -r dist/linux-unpacked/*
 	fperms +x /opt/${PN}/${PN}
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
 }
