@@ -7,12 +7,13 @@ inherit font
 
 DESCRIPTION="Glow Sans is an open source CJK typeface project based on Source Han Sans, Fira Sans and Raleway."
 HOMEPAGE="https://github.com/welai/glow-sans"
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}"
 
 LICENSE="OFL-1.1"
 SLOT="0"
 IUSE="+normal compressed condensed extended wide"
 KEYWORDS="*"
+BDEPEND="app-arch/unzip"
 
 SRC_URI="https://github.com/welai/glow-sans/releases/download/v${PV}/GlowSansSC-Normal-v${PV}.zip
 	compressed? ( https://github.com/welai/glow-sans/releases/download/v${PV}/GlowSansSC-Compressed-v${PV}.zip )
