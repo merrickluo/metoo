@@ -4,7 +4,7 @@ My Personal gentoo overlay, featuring
 
 - [[rescuetime.com/][rescuetime]]
 - [[https://www.jetbrains.com/datagrip/][datagrip]]
-- [[https://github.com/Cockatrice/Cockatrice][cockatrice]](latest version)
+- [[https://github.com/Cockatrice/Cockatrice][cockatrice]](latest beta version)
 - [[https://github.com/flightlessmango/MangoHud][mangohud]]
 - [[https://github.com/Manuel-777/MTG-Arena-Tool][mtg-arena-tool]]
 - [[https://gitlab.com/chinstrap/gammastep][gammastep]]
@@ -13,3 +13,5 @@ My Personal gentoo overlay, featuring
 - [[https://www.raspberrypi.org/software/][rpi-imager]]
 - [[https://github.com/atlas-engineer/nyxt][nyxt browser]]
 - [[https://github.com/jD91mZM2/xidlehook][xidlehook]]
+- [[https://github.com/jellyfin/jellyfin-media-player][jellyfin-media-player]]
+- [[https://github.com/welai/glow-sans][glow-sans-sc]]
