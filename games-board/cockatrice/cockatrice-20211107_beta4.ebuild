@@ -5,7 +5,7 @@ EAPI=7
 
 inherit xdg cmake
 
-MY_PV="2021-05-28-Development-2.8.1-beta.3"
+MY_PV="2021-11-07-Development-2.8.1-beta.4"
 DESCRIPTION="An open-source multiplatform software for playing card games over a network"
 HOMEPAGE="https://github.com/Cockatrice/Cockatrice"
 SRC_URI="https://github.com/Cockatrice/Cockatrice/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
