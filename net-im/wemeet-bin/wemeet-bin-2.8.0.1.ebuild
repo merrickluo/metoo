@@ -74,11 +74,3 @@ pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_icon_cache_update
 }
-
-# * QA Notice: Unresolved soname dependencies:
-#  *
-#  *      /opt/wemeet/lib/libxnn_cudahelper.so: libcudart.so.9.0 libcudnn.so.7
-#  *      /opt/wemeet/lib/libxnn_trt.so: libnvinfer.so.5 libnvinfer_plugin.so.5
-#  *      /opt/wemeet/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so: libFcitxQt5DBusAddons.so.1
-#  *      /opt/wemeet/plugins/platforms/libqeglfs.so: libQt5EglDeviceIntegration.so.5
-#  *
