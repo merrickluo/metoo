@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/meskarune/i3lock-fancy"
 EGIT_REPO_URI="https://github.com/meskarune/i3lock-fancy.git"
 LICENSE="BSD"
 SRC_URI=""
-KEYWORDS=""
+KEYWORDS="~amd64"
 SLOT="0"
 
 RDEPEND="app-shells/bash:0
