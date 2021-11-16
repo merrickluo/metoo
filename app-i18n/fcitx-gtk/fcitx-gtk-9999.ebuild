@@ -21,7 +21,7 @@ LICENSE="BSD-1 GPL-2+ LGPL-2+ MIT"
 SLOT="5"
 IUSE="+gtk2 +gtk3 +introspection +snooper"
 
-RDEPEND="app-i18n/fcitx5
+RDEPEND="app-i18n/fcitx:5
 	gtk2? ( x11-libs/gtk+:2 )
 	gtk3? ( x11-libs/gtk+:3 )
 	introspection? ( dev-libs/gobject-introspection )

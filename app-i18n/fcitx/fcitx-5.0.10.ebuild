@@ -61,8 +61,8 @@ DEPEND="${RDEPEND}
 	kde-frameworks/extra-cmake-modules:5
 	virtual/pkgconfig"
 
+S="${WORKDIR}/${PN}${SLOT}-${PV}"
 src_prepare() {
-	pwd
 	ln -s "${DISTDIR}/fcitx-data-en_dict-20121020.tar.gz" src/modules/spell/dict/en_dict-20121020.tar.gz || die
 
 	cmake_src_prepare

@@ -21,8 +21,8 @@ LICENSE="GPL-2+"
 SLOT="5-plasma5"
 IUSE="+kcm +config-qt test"
 
-RDEPEND="app-i18n/fcitx5
-	app-i18n/fcitx5-qt[qt5,-only_plugin]
+RDEPEND="app-i18n/fcitx:5
+	app-i18n/fcitx-qt:5[qt5,-only_plugin]
 	dev-qt/qtcore:5
 	dev-qt/qtdbus:5
 	dev-qt/qtgui:5
@@ -53,6 +53,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
 
+S="${WORKDIR}/fcitx5-configtool-${PV}"
 src_configure() {
 	local mycmakeargs=(
 		-DKDE_INSTALL_USE_QT_SYS_PATHS=yes

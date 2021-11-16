@@ -21,17 +21,18 @@ LICENSE="BSD-1 GPL-2+ LGPL-2+ MIT"
 SLOT="5"
 IUSE="qt5 only_plugin"
 
-RDEPEND="app-i18n/fcitx5
+RDEPEND="app-i18n/fcitx:5
 	dev-qt/qtcore:5
 	dev-qt/qtdbus:5
 	dev-qt/qtgui:5
 	dev-qt/qtwidgets:5
-	dev-qt/qtx11extras:5
+	x11-libs/libX11
 	dev-qt/qtconcurrent:5
 	kde-frameworks/extra-cmake-modules"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
+S="${WORKDIR}/fcitx5-qt-${PV}"
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_INSTALL_SYSCONFDIR="${EPREFIX}/etc"
