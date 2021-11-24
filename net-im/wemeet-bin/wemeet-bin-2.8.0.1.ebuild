@@ -21,8 +21,15 @@ DEPEND="
 		x11-libs/libX11
 		dev-libs/wayland
 		dev-qt/qtgui[eglfs]
+		dev-qt/qtx11extras
+		dev-qt/qtnetwork
+		dev-qt/qtprintsupport
+		dev-qt/qtopengl
+		dev-qt/qtsql
+		dev-qt/qtquickcontrols
 		x11-libs/libXrandr
 		dev-libs/libbsd
+		=media-libs/libpng-compat-1.2*
 		"
 RDEPEND="${DEPEND}"
 BDEPEND=""
