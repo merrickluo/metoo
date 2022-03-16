@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+command="/usr/bin/nebula"
+command_args="-config /etc/nebula/config.yaml"
+command_background=true
+pidfile=/run/nebula.pid
+
+depend() {
+	need net
+}
