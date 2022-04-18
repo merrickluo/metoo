@@ -3,14 +3,23 @@
 
 EAPI=7
 
+inherit cmake
+
+if [[ "${PV}" == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/dpayne/cli-visualizer"
+	kEYWORDS="*"
+else
+	SRC_URI="https://github.com/dpayne/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="amd64 ~x86"
+fi
+
 DESCRIPTION="CLI based audio visualizer"
 HOMEPAGE="https://github.com/dpayne/cli-visualizer"
-SRC_URI="https://github.com/dpayne/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 RESTRICT="mirror"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
 
 RDEPEND="sys-libs/ncurses"
 DEPEND="${RDEPEND}
@@ -18,6 +27,9 @@ DEPEND="${RDEPEND}
 	dev-util/cmake"
 BDEPEND=""
 
-src_install(){
-	emake DESTDIR="${D}" install
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_CXX_FLAGS="-DNCURSESW"
+	)
+	cmake_src_configure
 }
