@@ -1,1 +1,2 @@
 dev-util/direnv/files/direnv-2.31.0-deps.tar.xz filter=lfs diff=lfs merge=lfs -text
+net-vpn/tailscale/files/tailscale-1.24.0-deps.tar.xz filter=lfs diff=lfs merge=lfs -text
