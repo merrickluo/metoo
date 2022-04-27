@@ -19,6 +19,7 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
 
+BDEPEND=">=dev-lang/go-1.18.0"
 RDEPEND="net-firewall/iptables"
 
 # This translates the build command from upstream's build_dist.sh to an
