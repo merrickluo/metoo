@@ -1,4 +1,4 @@
-# Copyright 2020-2021 Gentoo Authors
+# Copyright 2020-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,20 +12,23 @@ HOMEPAGE="https://github.com/flightlessmango/MangoHud"
 RESTRICT="mirror"
 
 IMGUI_VER="1.81"
+SPDLOG_VER="1.8.5"
 
-IMGUI_SRC_URI="
+WRAP_SRC_URI="
 	https://github.com/ocornut/imgui/archive/v${IMGUI_VER}.tar.gz -> ${PN}-imgui-${IMGUI_VER}.tar.gz
 	https://wrapdb.mesonbuild.com/v1/projects/imgui/${IMGUI_VER}/1/get_zip -> ${PN}-imgui-wrap-${IMGUI_VER}.zip
+	https://github.com/gabime/spdlog/archive/v${SPDLOG_VER}.tar.gz -> ${PN}-spdlog-${SPDLOG_VER}.tar.gz
+	https://wrapdb.mesonbuild.com/v2/spdlog_${SPDLOG_VER}-1/get_patch -> spdlog-${SPDLOG_VER}-1-wrap.zip
 "
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/flightlessmango/MangoHud.git"
-	SRC_URI="${IMGUI_SRC_URI}"
+	SRC_URI="${WRAP_SRC_URI}"
 else
 	SRC_URI="
 		https://github.com/flightlessmango/MangoHud/archive/v${PV}.tar.gz -> ${P}.tar.gz
-		${IMGUI_SRC_URI}
+		${WRAP_SRC_URI}
 	"
 	KEYWORDS="-* ~amd64 ~x86"
 fi
@@ -60,7 +63,9 @@ if ! [[ ${PV} == "9999" ]]; then
 fi
 
 src_unpack() {
-	git-r3_src_unpack
+	if [[ ${PV} == "9999" ]]; then
+		git-r3_src_unpack
+	fi
 	default
 }
 
@@ -68,6 +73,7 @@ src_prepare() {
 	# Both imgui archives use the same folder name, so we don't need
 	# to rename anything. Just move the folders to the appropriate location.
 	mv "${WORKDIR}/imgui-${IMGUI_VER}" "${S}/subprojects" || die
+	mv "${WORKDIR}/spdlog-${SPDLOG_VER}" "${S}/subprojects" || die
 
 	eapply_user
 }
