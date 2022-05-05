@@ -12,13 +12,11 @@ HOMEPAGE="https://github.com/flightlessmango/MangoHud"
 RESTRICT="mirror"
 
 IMGUI_VER="1.81"
-SPDLOG_VER="1.8.5"
+IMGUI_MESON_WRAP_VER="1"
 
 WRAP_SRC_URI="
-	https://github.com/ocornut/imgui/archive/v${IMGUI_VER}.tar.gz -> ${PN}-imgui-${IMGUI_VER}.tar.gz
-	https://wrapdb.mesonbuild.com/v1/projects/imgui/${IMGUI_VER}/1/get_zip -> ${PN}-imgui-wrap-${IMGUI_VER}.zip
-	https://github.com/gabime/spdlog/archive/v${SPDLOG_VER}.tar.gz -> ${PN}-spdlog-${SPDLOG_VER}.tar.gz
-	https://wrapdb.mesonbuild.com/v2/spdlog_${SPDLOG_VER}-1/get_patch -> spdlog-${SPDLOG_VER}-1-wrap.zip
+	https://github.com/ocornut/imgui/archive/v${IMGUI_VER}.tar.gz -> imgui-${IMGUI_VER}.tar.gz
+	https://wrapdb.mesonbuild.com/v2/imgui_${IMGUI_VER}-${IMGUI_MESON_WRAP_VER}/get_patch -> imgui-${IMGUI_VER}-${IMGUI_MESON_WRAP_VER}-meson-wrap.zip
 "
 
 if [[ ${PV} == "9999" ]]; then
@@ -41,7 +39,10 @@ REQUIRED_USE="
 	^^ ( X wayland )
 	xnvctrl? ( video_cards_nvidia )"
 
-BDEPEND="dev-python/mako[${PYTHON_USEDEP}]"
+BDEPEND="
+	dev-python/mako[${PYTHON_USEDEP}]
+	dev-libs/spdlog
+"
 
 DEPEND="
 	dev-util/glslang
@@ -63,6 +64,7 @@ if ! [[ ${PV} == "9999" ]]; then
 fi
 
 src_unpack() {
+
 	if [[ ${PV} == "9999" ]]; then
 		git-r3_src_unpack
 	fi
@@ -73,7 +75,6 @@ src_prepare() {
 	# Both imgui archives use the same folder name, so we don't need
 	# to rename anything. Just move the folders to the appropriate location.
 	mv "${WORKDIR}/imgui-${IMGUI_VER}" "${S}/subprojects" || die
-	mv "${WORKDIR}/spdlog-${SPDLOG_VER}" "${S}/subprojects" || die
 
 	eapply_user
 }
@@ -82,6 +83,7 @@ multilib_src_configure() {
 	local emesonargs=(
 		-Dappend_libdir_mangohud=false
 		-Duse_system_vulkan=enabled
+		-Duse_system_spdlog=enabled
 		-Dinclude_doc=false
 		-Dwith_nvml=$(usex video_cards_nvidia enabled disabled)
 		-Dwith_xnvctrl=$(usex xnvctrl enabled disabled)
