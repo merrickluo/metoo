@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -18,9 +18,9 @@ DESCRIPTION="Fcitx5 Next generation of fcitx "
 HOMEPAGE="https://fcitx-im.org/ https://github.com/fcitx/fcitx5"
 SRC_URI+=" https://download.fcitx-im.org/data/en_dict-20121020.tar.gz -> fcitx-data-en_dict-20121020.tar.gz"
 
-LICENSE="BSD-1 GPL-2+ LGPL-2+ MIT"
+LICENSE="BSD-1 GPL-2+ LGPL-2+ MIT Unicode-DFS-2016"
 SLOT="5"
-IUSE="+enchant test coverage doc presage systemd wayland +X"
+IUSE="+enchant test coverage doc presage systemd wayland +X +emoji"
 REQUIRED_USE="
 	|| ( wayland X )
 	coverage? ( test )
@@ -62,8 +62,12 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 S="${WORKDIR}/${PN}${SLOT}-${PV}"
+src_unpack() {
+	unpack "${P}.tar.gz"
+}
+
 src_prepare() {
-	ln -s "${DISTDIR}/fcitx-data-en_dict-20121020.tar.gz" src/modules/spell/dict/en_dict-20121020.tar.gz || die
+	ln -s "${DISTDIR}/fcitx-data-en_dict-20121020.tar.gz" src/modules/spell/en_dict-20121020.tar.gz || die
 
 	cmake_src_prepare
 }
@@ -80,6 +84,7 @@ src_configure() {
 		-DENABLE_X11=$(usex X)
 		-DENABLE_DOC=$(usex doc)
 		-DUSE_SYSTEMD=$(usex systemd)
+		-DUSE_EMOJI=$(usex emoji)
 	)
 	cmake_src_configure
 }
