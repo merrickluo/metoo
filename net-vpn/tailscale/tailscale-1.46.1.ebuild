@@ -1,4 +1,4 @@
-# Copyright 2020-2022 Gentoo Authors
+# Copyright 2020-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -6,21 +6,23 @@ inherit go-module systemd tmpfiles
 
 # These settings are obtained by running ./build_dist.sh shellvars` in
 # the upstream repo.
-VERSION_MINOR="1.24"
-VERSION_SHORT="1.24.0"
-VERSION_LONG="1.24.0-tf0e71f4a2"
-VERSION_GIT_HASH="f0e71f4a20d3a5179e47669fe913a18c2337cc80"
+VERSION_MINOR="46"
+VERSION_SHORT="1.46.1"
+VERSION_LONG="1.46.1-t2d3223f55"
+VERSION_GIT_HASH="2d3223f557924d408b5d67b80440d6fba264a0fd"
 
 DESCRIPTION="Tailscale vpn client"
 HOMEPAGE="https://tailscale.com"
 SRC_URI="https://github.com/tailscale/tailscale/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI+=" https://dev.gentoo.org/~williamh/dist/${P}-deps.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
 
-BDEPEND=">=dev-lang/go-1.18.0"
 RDEPEND="net-firewall/iptables"
+
+RESTRICT="test"
 
 # This translates the build command from upstream's build_dist.sh to an
 # ebuild equivalent.
@@ -29,11 +31,6 @@ build_dist() {
 		-X tailscale.com/version.Long=${VERSION_LONG}
 		-X tailscale.com/version.Short=${VERSION_SHORT}
 		-X tailscale.com/version.GitCommit=${VERSION_GIT_HASH}" "$@"
-}
-
-src_unpack() {
-	default
-	unpack ${FILESDIR}/${P}-deps.tar.xz
 }
 
 src_compile() {
